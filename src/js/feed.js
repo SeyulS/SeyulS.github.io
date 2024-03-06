@@ -67,7 +67,6 @@ function createCard(data) {
 }
 
 function clicked(slug){
-  alert(slug);
   var url = 'https://ambwslug-default-rtdb.asia-southeast1.firebasedatabase.app/posts/' + slug +'.json';
 
   if (!sessionStorage.getItem(slug)) {
