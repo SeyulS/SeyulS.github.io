@@ -32,65 +32,111 @@ function clearCards() {
 }
 
 function createCard(data) {
-  var exploreCard = document.createElement('div');
-  exploreCard.classList.add('explore__card');
 
-  // Create an img element with a source and style
-  var image = document.createElement('img');
-  image.src = data.image;
-  image.style.borderRadius = '10px';
-  image.style.width = '100%';
-  image.style.height = '67%';
+// Membuat elemen container div
+var containerDiv = document.createElement("div");
+containerDiv.classList.add("col-md-3");
 
-  // Create an h4 element with the text 'Gymnastic'
-  var heading = document.createElement('h4');
-  heading.textContent = data.name;
+// Membuat elemen box div
+var boxDiv = document.createElement("div");
+boxDiv.classList.add("box");
 
-  var text = document.createElement('p');
-  text.textContent = 'Click to See Details';
+// Membuat elemen gambar (img)
+var imgElement = document.createElement("img");
+imgElement.src = data.image
 
-  // Create an i element with a class
-  var arrowIcon = document.createElement('i');
-  arrowIcon.classList.add('ri-arrow-right-line');
+// Membuat elemen title div
+var titleDiv = document.createElement("div");
+titleDiv.classList.add("title");
+titleDiv.style.textAlign = "center";
+titleDiv.style.marginTop = "10px";
+titleDiv.innerText = data.name;
 
-  // Append elements to the explore card div
-  exploreCard.appendChild(image);
-  exploreCard.appendChild(heading);
-  exploreCard.appendChild(text);
+// Menyusun elemen-elemen menjadi struktur yang diinginkan
+boxDiv.appendChild(imgElement);
+boxDiv.appendChild(titleDiv);
+containerDiv.appendChild(boxDiv);
 
-  cardArea.appendChild(exploreCard);
+// Menyisipkan elemen container ke dalam body dokumen
 
-  exploreCard.addEventListener('click', function(){
-    clicked(data.slug);
+cardArea.appendChild(containerDiv);
+
+containerDiv.addEventListener('click', function(){
+  fetch(url)
+  .then(function (){
+    localStorage.setItem('clicked',JSON.stringify(data));
+    localStorage.setItem(JSON.parse(JSON.stringify(data)).id,JSON.stringify(data));
+    window.location.href = '/detail.html';
   })
+  .catch(function (error){
+    localStorage.setItem('off',JSON.stringify(data));
+    var listKey = Object.keys(localStorage);
+
+    var listKey = Object.keys(localStorage);
+    var count = 0;
+    for (var i = 0; i < listKey.length; i++) {
+      var key = listKey[i];i
+      if(localStorage.getItem(key) == localStorage.getItem("off")){
+        count = count + 1;
+      }
+    }
+
+      if (count == 1){
+        console.error('Fetch error:', error);
+        window.location.href = '/offline.html';
+      }
+      else{
+        localStorage.setItem('clicked', localStorage.getItem('off'));
+        window.location.href = '/detail.html';
+      }
+    
+
+  })
+  
+})
+
   
 }
 
 function clicked(slug){
-  var url = 'https://ambwslug-default-rtdb.asia-southeast1.firebasedatabase.app/posts/' + slug +'.json';
+  // var url = 'https://ambwslug-default-rtdb.asia-southeast1.firebasedatabase.app/posts/' + slug +'.json';
+  // fetch(url)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (data) {
+  //       localStorage.setItem('recent',JSON.stringify(data));
+  //       var arr = [];
+  //       arr.push(data.slug);
+  //     })
+  //     .catch(function (error) {
+  //             console.error('Fetch error:', error);
+  //             window.location.href = '/offline.html'; 
+  //     });
 
-  if (!sessionStorage.getItem(slug)) {
-    fetch(url)
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (data) {
-        console.log(data);
-        networkDataReceived = true;
-        localStorage.setItem('recently', JSON.stringify(data));
-        console.log(data);
-        localStorage.setItem(slug, JSON.stringify(data)); 
-        window.location.href = '/detail.html'; 
-      })
-      .catch(function (error) {
-        console.error('Fetch error:', error);
-        window.location.href = '/offline.html'; 
-      });
-  } 
-  else {
-    localStorage.setItem('recently', localStorage.getItem(slug));
-    window.location.href = '/detail.html';
-  }
+
+  // if (!sessionStorage.getItem(slug)) {
+  //   fetch(url)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (data) {
+  //       console.log(data);
+  //       networkDataReceived = true;
+  //       localStorage.setItem('recently', JSON.stringify(data));
+  //       console.log(data);
+  //       localStorage.setItem(slug, JSON.stringify(data)); 
+  //       window.location.href = '/detail.html'; 
+  //     })
+  //     .catch(function (error) {
+  //       console.error('Fetch error:', error);
+  //       window.location.href = '/offline.html'; 
+  //     });
+  // } 
+  // else {
+  //   localStorage.setItem('recently', localStorage.getItem(slug));
+  //   window.location.href = '/detail.html';
+  // }
 
 }
 function updateUI(data) {

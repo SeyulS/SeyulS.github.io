@@ -35,16 +35,16 @@
     <link rel="stylesheet" href="src/css/styles.css" />
 </head>
 <body>
-    <header class="section__container header__container">
-        <div class="header__content">
+    <header class="section__container header__container" style="text-align: center;">
+        <div class="header__content" style="color: white;">
           <span class="bg__blur"></span>
           <span class="bg__blur header__blur"></span>
           <h1><span id = "name"></span></h1>
           <h4>Description</h4>
-          <p id = "description">
+          <p class = "mx-auto" id = "description">
 
           </p>
-          <h4>Duration</h4>
+          <h4 class="title">Duration</h4>
           <p id="duration">
           </p>
           <h4>Location</h4>
@@ -55,18 +55,16 @@
           </p>
           <button class="btn" onclick="window.location.href='index.html'"><span><i class="ri-arrow-left-line"></i></span></button>
         </div>
-        <div class="header__image">
-          <img src="src/assets/header.png" alt="header" />
-        </div>
       </header>
     
     <script>
-        var nowData = JSON.parse(localStorage.getItem('recently'));
+        var nowData = JSON.parse(localStorage.getItem('clicked'));
         document.getElementById('name').innerHTML = nowData.name;
         document.getElementById('description').innerHTML = nowData.description;
         document.getElementById('duration').innerHTML = nowData.duration + " hours";
         document.getElementById('location').innerHTML = nowData.location + ", Indonesia";
         document.getElementById('price').innerHTML = "IDR " + nowData.price;
+        document.getElementById('image').src = nowData.image;
     </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script defer src="/src/js/material.min.js"></script>
