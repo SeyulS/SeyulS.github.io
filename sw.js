@@ -75,7 +75,7 @@ function isInArray(string, array) {
 
 self.addEventListener('fetch', function (event) {
 
-  var url = 'https://tes1pwa-6fec3-default-rtdb.asia-southeast1.firebasedatabase.app/posts';
+  var url = 'https://ambw-4cb69-default-rtdb.asia-southeast1.firebasedatabase.app/posts';
   if (event.request.url.indexOf(url) > -1) {
     event.respondWith(fetch(event.request)
       .then(function (res) {

@@ -32,7 +32,6 @@ function clearCards() {
 }
 
 function createCard(data) {
-console.log(data);
 var containerDiv = document.createElement("div");
 containerDiv.classList.add("col-md-3");
 
@@ -104,7 +103,7 @@ function updateUI(data) {
   }
 }
 
-var url = 'https://tes1pwa-6fec3-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
+var url = 'https://ambw-4cb69-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json';
 var networkDataReceived = false;
 
 fetch(url)

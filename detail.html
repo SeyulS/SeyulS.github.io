@@ -48,7 +48,6 @@
   </header>    
     <script>
         var nowData = JSON.parse(localStorage.getItem('clicked'));
-        alert(nowData.name);
         document.getElementById('name').innerHTML = nowData.name;
         document.getElementById('description').innerHTML = nowData.description;
         document.getElementById('images').src = nowData.images;
