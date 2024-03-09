@@ -1,6 +1,4 @@
 var installButton = document.querySelector('#installation');
-// var createPostArea = document.querySelector('#create-post');
-// var closeCreatePostModalButton = document.querySelector('#close-create-post-modal-btn');
 var cardArea = document.querySelector('#body-post');
 var CACHE_STATIC_NAME = 'static-v10';
 
@@ -54,8 +52,6 @@ function createCard(data) {
   cardDiv.appendChild(imgElement);
   colDiv.appendChild(cardDiv);
   colDiv.appendChild(titleDiv);
-
-// Menyisipkan elemen container ke dalam body dokumen
 
   cardArea.appendChild(colDiv);
   var cards = document.getElementsByClassName('col-md-3');
@@ -111,52 +107,10 @@ function enlargeCard(card) {
   card.classList.add('enlarged');
 }
 
-// Fungsi untuk mengembalikan ukuran kartu ke ukuran semula
 function shrinkCard(card) {
   card.classList.remove('enlarged');
 }
 
-function clicked(slug){
-  // var url = 'https://ambwslug-default-rtdb.asia-southeast1.firebasedatabase.app/posts/' + slug +'.json';
-  // fetch(url)
-  //     .then(function (res) {
-  //       return res.json();
-  //     })
-  //     .then(function (data) {
-  //       localStorage.setItem('recent',JSON.stringify(data));
-  //       var arr = [];
-  //       arr.push(data.slug);
-  //     })
-  //     .catch(function (error) {
-  //             console.error('Fetch error:', error);
-  //             window.location.href = '/offline.html'; 
-  //     });
-
-
-  // if (!sessionStorage.getItem(slug)) {
-  //   fetch(url)
-  //     .then(function (res) {
-  //       return res.json();
-  //     })
-  //     .then(function (data) {
-  //       console.log(data);
-  //       networkDataReceived = true;
-  //       localStorage.setItem('recently', JSON.stringify(data));
-  //       console.log(data);
-  //       localStorage.setItem(slug, JSON.stringify(data)); 
-  //       window.location.href = '/detail.html'; 
-  //     })
-  //     .catch(function (error) {
-  //       console.error('Fetch error:', error);
-  //       window.location.href = '/offline.html'; 
-  //     });
-  // } 
-  // else {
-  //   localStorage.setItem('recently', localStorage.getItem(slug));
-  //   window.location.href = '/detail.html';
-  // }
-
-}
 function updateUI(data) {
   clearCards();
   for (var i = 0; i < data.length; i++) {
