@@ -33,35 +33,45 @@ function clearCards() {
 
 function createCard(data) {
 
-// Membuat elemen container div
-var containerDiv = document.createElement("div");
-containerDiv.classList.add("col-md-3");
+  var colDiv = document.createElement("div");
+  colDiv.className = "col-md-3 mb-3";
+  colDiv.style.borderWidth = "5px";
+  colDiv.style.borderRadius = "5px";
 
-// Membuat elemen box div
-var boxDiv = document.createElement("div");
-boxDiv.classList.add("box");
+  var cardDiv = document.createElement("div");
+  cardDiv.className = "card mt-2 bg-dark";
 
-// Membuat elemen gambar (img)
-var imgElement = document.createElement("img");
-imgElement.src = data.image;
+  var imgElement = document.createElement("img");
+  imgElement.className = "card-img-top";
+  imgElement.src = data.image;
+  imgElement.alt = "Card image cap";
 
-// Membuat elemen title div
-var titleDiv = document.createElement("div");
-titleDiv.classList.add("title");
-titleDiv.style.textAlign = "center";
-titleDiv.style.marginTop = "10px";
-titleDiv.innerText = data.name;
+  var titleDiv = document.createElement("h5");
+  titleDiv.className = "card-title text-center mt-2 mb-2";
+  titleDiv.style.color = "white";
+  titleDiv.textContent = data.name;
 
-// Menyusun elemen-elemen menjadi struktur yang diinginkan
-boxDiv.appendChild(imgElement);
-boxDiv.appendChild(titleDiv);
-containerDiv.appendChild(boxDiv);
+  cardDiv.appendChild(imgElement);
+  colDiv.appendChild(cardDiv);
+  colDiv.appendChild(titleDiv);
 
 // Menyisipkan elemen container ke dalam body dokumen
 
-cardArea.appendChild(containerDiv);
+  cardArea.appendChild(colDiv);
+  var cards = document.getElementsByClassName('col-md-3');
 
-containerDiv.addEventListener('click', function(){
+  // Menambahkan event listener pada setiap kartu
+  for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('mouseenter', function() {
+          enlargeCard(this);
+      });
+
+      cards[i].addEventListener('mouseleave', function() {
+          shrinkCard(this);
+      });
+  }
+
+  cardDiv.addEventListener('click', function(){
   fetch(url)
   .then(function (){
     localStorage.setItem('clicked',JSON.stringify(data));
@@ -96,6 +106,14 @@ containerDiv.addEventListener('click', function(){
 })
 
   
+}
+function enlargeCard(card) {
+  card.classList.add('enlarged');
+}
+
+// Fungsi untuk mengembalikan ukuran kartu ke ukuran semula
+function shrinkCard(card) {
+  card.classList.remove('enlarged');
 }
 
 function clicked(slug){

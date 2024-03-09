@@ -59,6 +59,7 @@ a {
 body {
   font-family: "Poppins", sans-serif;
   background-color: var(--primary-color);
+  /* overflow: hidden; */
 }
 
 nav {
@@ -161,4 +162,12 @@ nav {
 .container .box:hover {
   box-shadow: 0px 0px 20px 1px #ffbb763f;
   border: 1px solid rgba(255, 255, 255, 0.454);
+}
+.col-md-3 {
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Class untuk kartu yang membesar */
+.col-md-3.enlarged {
+  transform: scale(1.03); /* Sesuaikan faktor skala sesuai kebutuhan */
 }
