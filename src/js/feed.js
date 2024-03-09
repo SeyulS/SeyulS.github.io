@@ -32,6 +32,8 @@ function clearCards() {
 }
 
 function createCard(data) {
+
+// Membuat elemen container div
 var containerDiv = document.createElement("div");
 containerDiv.classList.add("col-md-3");
 
@@ -41,10 +43,7 @@ boxDiv.classList.add("box");
 
 // Membuat elemen gambar (img)
 var imgElement = document.createElement("img");
-imgElement.style.width = "100%";
-imgElement.style.height = "154px";
-imgElement.src = data.images;
-
+imgElement.src = data.image;
 
 // Membuat elemen title div
 var titleDiv = document.createElement("div");
@@ -53,10 +52,12 @@ titleDiv.style.textAlign = "center";
 titleDiv.style.marginTop = "10px";
 titleDiv.innerText = data.name;
 
+// Menyusun elemen-elemen menjadi struktur yang diinginkan
 boxDiv.appendChild(imgElement);
 boxDiv.appendChild(titleDiv);
 containerDiv.appendChild(boxDiv);
 
+// Menyisipkan elemen container ke dalam body dokumen
 
 cardArea.appendChild(containerDiv);
 
@@ -95,6 +96,48 @@ containerDiv.addEventListener('click', function(){
 })
 
   
+}
+
+function clicked(slug){
+  // var url = 'https://ambwslug-default-rtdb.asia-southeast1.firebasedatabase.app/posts/' + slug +'.json';
+  // fetch(url)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (data) {
+  //       localStorage.setItem('recent',JSON.stringify(data));
+  //       var arr = [];
+  //       arr.push(data.slug);
+  //     })
+  //     .catch(function (error) {
+  //             console.error('Fetch error:', error);
+  //             window.location.href = '/offline.html'; 
+  //     });
+
+
+  // if (!sessionStorage.getItem(slug)) {
+  //   fetch(url)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (data) {
+  //       console.log(data);
+  //       networkDataReceived = true;
+  //       localStorage.setItem('recently', JSON.stringify(data));
+  //       console.log(data);
+  //       localStorage.setItem(slug, JSON.stringify(data)); 
+  //       window.location.href = '/detail.html'; 
+  //     })
+  //     .catch(function (error) {
+  //       console.error('Fetch error:', error);
+  //       window.location.href = '/offline.html'; 
+  //     });
+  // } 
+  // else {
+  //   localStorage.setItem('recently', localStorage.getItem(slug));
+  //   window.location.href = '/detail.html';
+  // }
+
 }
 function updateUI(data) {
   clearCards();
