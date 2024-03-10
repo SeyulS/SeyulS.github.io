@@ -28,7 +28,6 @@ function clearCards() {
     cardArea.removeChild(cardArea.lastChild);
   }
 }
-
 function createCard(data) {
 
   var colDiv = document.createElement("div");
@@ -56,7 +55,6 @@ function createCard(data) {
   cardArea.appendChild(colDiv);
   var cards = document.getElementsByClassName('col-md-3');
 
-  // Menambahkan event listener pada setiap kartu
   for (var i = 0; i < cards.length; i++) {
       cards[i].addEventListener('mouseenter', function() {
           enlargeCard(this);
@@ -76,7 +74,6 @@ function createCard(data) {
   })
   .catch(function (error){
     localStorage.setItem('off',JSON.stringify(data));
-    var listKey = Object.keys(localStorage);
 
     var listKey = Object.keys(localStorage);
     var count = 0;
